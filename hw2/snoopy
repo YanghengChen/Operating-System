@@ -1,0 +1,50 @@
+#!/bin/bash
+
+echo
+printf "USERID,    NAME,  PHONE,TTY,WHAT\n" >> text.txt
+
+
+if (test "$1" == "all")
+then
+  print=`grep -w "BADNEWSBEARS23" /etc/passwd | cut -d":" -f1`
+fi
+
+if (test "$1" != "all") && (test $# -gt 0)
+then
+  print=$*
+fi
+
+if (test $# -eq 0)
+then
+  print=`who | cut -d" " -f1`
+fi
+
+for user in $print
+do
+##only wants name phone and office to be print out otherwise we can just use grep BADNEWSBEARS23 /etc/passwd | cut -d":" -f5
+   name=`grep $user /etc/passwd | cut -d":" -f5 | cut -d"," -f1`
+   phone=`grep $user /etc/passwd | cut -d":" -f5 | cut -d"," -f4`
+   tty=`w $user -h -s | tr -s " " | cut -d" " -f2`
+   what=`w $user -h | cut -c65-`
+
+## check if the string is empty
+#if the adress of tty and what is empty, the leave it --   
+  if (test -z "$tty")
+   then
+      tty='--'
+   fi
+
+   if (test -z "$what")
+   then
+      what='--'
+   fi
+
+   printf "$user,$name,$phone,$tty,$what" | tr '\n' ' ' >> text.txt 
+   printf  "\n"  >> text.txt
+
+
+
+done
+
+cat text.txt | column -t -s","
+rm text.txt
