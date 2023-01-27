@@ -1,0 +1,98 @@
+#/bin/bash
+
+# Start
+echo Running egg shell for you!
+
+# Read while loop that reads the command and argus
+while : 
+do
+  read -p "LordEggs> " cmd args
+
+  case $cmd in
+
+    # Display named file one page at a time with scrollability
+    eggshow)
+      if [ -z "$args" ]
+      then
+        echo Enter a filename
+      else
+        less -F $args
+      fi
+      ;;
+
+    # Display user’s full name and office phone number
+    egghead)
+      for user in $args
+      do
+        name=`grep $user /etc/passwd | cut -d':' -f5 | cut -d',' -f1 | tr '\n' ' '`
+        phone=`grep $user /etc/passwd | cut -d':' -f5 | cut -d',' -f3`
+        if [ ! -z "$name" ]
+        then
+          echo -e $name"\t:\t"$phone
+        fi
+      done
+      ;;
+
+    # Display only full names of those currently logged in
+    eggers)
+      logUsers=`who | cut -d' ' -f1 `
+      echo Currently logged in users:
+      for user in $logUsers
+      do
+        grep $user /etc/passwd | cut -d':' -f5 | cut -d',' -f1 | tr '\n' ' '
+        echo
+      done
+      ;;
+
+    # Display contents of current directory
+    eggcrate)
+      echo Contents of this directory:
+      ls
+      ;;
+
+    # Display help
+    egghelp)
+      cat help.txt
+      ;;
+
+    # Edit file using vim editor
+    custard)
+      # The egg script itself should not be accessible from the egg shell!
+      except=`echo $args | grep -w egg`
+      if [ -z "$args" ]
+      then
+        echo No filename provided!
+      elif [ ! -z "$except" ]
+      then
+        echo Access to core file denied!
+      else
+        vi $args
+      fi
+      ;;
+
+    # The "snoopy" command from hw2
+    snoopy)
+      ./snoopy $args
+      ;;
+
+    # Escape to a real bash shell
+    ostrich)
+      bash
+      ;;
+
+    # The "deviled" command
+    deviled)
+    	
+	echo NO CREATIVITY!!!!!
+      ;; 
+
+    # Exit the egg shell
+    eggdrop)
+      echo Egg Shell Exiting
+      break
+      ;;
+
+
+  esac 
+done
+
