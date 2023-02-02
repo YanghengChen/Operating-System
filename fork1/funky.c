@@ -15,11 +15,11 @@ int main(int argc, char** argv) {
 
     for (i=0; i<child; i++) {
 	      if (fork() == 0) {
-            child++;
+            child++;  // increase the number of child every time when fork()==0
             if (child > N){
-		            break;
+		            break; 
             }
-            i=-1;
+            i=-1;   // somehow I have to set i equals to -1 to make the loop starts over.
             
         }
     }
