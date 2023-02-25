@@ -33,11 +33,7 @@ int main(int argc, char **argv) {
         return 0;
     }
 
-    // I am number 4 (index 3) on the list.
     shmem += 3;
-    // favFood size is 30 including null terminator,
-    // so we can have upto 29 other characters.
-    // Note: The last spot must be left for the null terminator.
     strncpy(shmem->favFood, argv[1], 29);
     return 0;
 }
