@@ -31,8 +31,7 @@ int main(int argc, char **argv) {
         return 0;
     }
 
-    // I am number 4 (index 3) on the list.
     shmem += 3;
-    shmem->favNum = atoi(argv[1]); // ignoring type checks
+    shmem->favNum = atoi(argv[1]); // ignore type checks
     return 0;
 }
