@@ -19,18 +19,19 @@ int main(int argc, char **argv) {
 
     FILE *fopen(), *fp;
     int shmid;
+        //Read from BBID.txt provided in class
     if ((fp = fopen("/pub/csc460/bb/BBID.txt","r")) == NULL) {
         printf("Could not open this file.\n");
         return 0;
     }
     fscanf(fp,"%d",&shmid);
-
+  // Attach shared memory
     bStruct *shmem;
     if ((shmem = (bStruct *) shmat(shmid, NULL, SHM_RND)) == (void *)-1) {
         printf("Can not create shared memory.\n");
         return 0;
     }
-
+    // Located index 3 on the list.
     shmem += 3;
     shmem->favNum = atoi(argv[1]); // ignore type checks
     return 0;

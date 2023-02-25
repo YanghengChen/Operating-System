@@ -20,12 +20,13 @@ int main(int argc, char **argv) {
 
     FILE *fopen(), *fp;
     int shmid;
+        //Read from BBID.txt provided in class
     if ((fp = fopen("/pub/csc460/bb/BBID.txt","r")) == NULL) {
         printf("Cannot open the file.\n");
         return 0;
     }
     fscanf(fp,"%d",&shmid);
-
+      // Attach shared memory
     bStruct *shmem;
     if ((shmem = (bStruct *) shmat(shmid, NULL, SHM_RND)) == (void *)-1) {
         printf("Cannot attach shared memory.\n");

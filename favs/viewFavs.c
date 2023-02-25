@@ -14,7 +14,7 @@ typedef struct {
 int main() {
     FILE *fopen(), *fp;
     int shmid;
-    //Read from /pub/csc460/bb/BBID.txt
+    //Read from BBID.txt provided in class
     if ((fp = fopen("/pub/csc460/bb/BBID.txt","r")) == NULL) {
         printf("Cannot open current file.\n");
          return 0;
@@ -28,7 +28,7 @@ int main() {
          return 0;
     }
 
-    // Print data from shared memory
+    // Print all the data from shared memory
     printf("\n\t\t\tSHARED MEMORY:\n\n");
     // There are 12 of these structs
     int i;
