@@ -8,7 +8,7 @@ typedef struct {
     int id;
     char name[20];
     int favNum;
-    char favFood[20];
+    char favFood[30];
 } bStruct;
 
 int main(int argc, char **argv) {
