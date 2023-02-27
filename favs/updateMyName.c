@@ -33,8 +33,8 @@ int main(int argc, char **argv) {
          return 0;
     }
 
-    // Located index 3 on the list.
-    shmem += 3;
+    // Located index 1 on the list.
+    shmem += 1;
     strncpy(shmem->name, argv[1], 19);
     return 0;
 }
