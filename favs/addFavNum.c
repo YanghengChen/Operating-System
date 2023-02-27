@@ -31,8 +31,8 @@ int main(int argc, char **argv) {
         printf("Can not create shared memory.\n");
         return 0;
     }
-    // Located index 3 on the list.
-    shmem += 3;
+    // Located index 1 on the list.
+    shmem += 1;
     shmem->favNum = atoi(argv[1]); // ignore type checks
     return 0;
 }
