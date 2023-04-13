@@ -1,3 +1,9 @@
+//Yang Chen
+//CSC460
+//Project 8
+
+
+
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
