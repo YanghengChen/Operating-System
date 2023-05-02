@@ -33,8 +33,8 @@ int main() {
     fscanf(fp, "%d\n", &mutex);
     fscanf(fp, "%d\n", &full);
     fclose(fp);
-
-   id[0] = 1; //set end flag to 1
+   //Have to set the end flag to 1 to end the program
+   id[0] = 1; 
 
    v(0, mutex);
    v(0, full);
