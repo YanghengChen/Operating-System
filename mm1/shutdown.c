@@ -17,7 +17,7 @@ int main() {
     FILE *fp;
     fp = fopen("resources.txt", "r");
     if (fp == NULL) {
-        printf("Error reading file.\n");
+        printf("Failed to read the file.\n");
         exit(1);
     }
 
@@ -27,7 +27,7 @@ int main() {
     }
 
     if ((id = (int*) shmat(shmid, NULL, SHM_RND)) == (void *)-1) {
-        printf("Failed to attach shared memory.\n");
+        printf("Cannot attach the shared memory.\n");
     }
 
     fscanf(fp, "%d\n", &mutex);
@@ -40,7 +40,7 @@ int main() {
    v(0, full);
 
    if (shmdt(id) == -1 )
-        printf(" ERROR in detaching.\n");
+        printf(" Failed to detach.\n");
 
    return 0;
 }
